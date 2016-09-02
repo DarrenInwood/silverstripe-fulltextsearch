@@ -735,6 +735,8 @@ abstract class SolrIndex extends SearchIndex
 
         $params = array_merge($params, array('fq' => implode(' ', $fq)));
 
+        $this->extend('updateQueryParams', $query, $params);
+
         $res = $service->search(
             $q ? implode(' ', $q) : '*:*',
             $offset,
